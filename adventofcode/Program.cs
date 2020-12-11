@@ -1,5 +1,6 @@
 ﻿using adventofcode.dec1;
 using adventofcode.dec10;
+using adventofcode.dec11;
 using adventofcode.dec2;
 using adventofcode.dec3;
 using adventofcode.dec4;
@@ -57,6 +58,11 @@ namespace adventofcode
             Console.WriteLine("Day 10");
             Console.WriteLine($"    part 1 : {day10P1}");
             Console.WriteLine($"    part 2 : {day10P2}");
+
+            var (day11P1, day11P2) = new Day11().GetAnswers();
+            Console.WriteLine("Day 11");
+            Console.WriteLine($"    part 1 : {day11P1}");
+            Console.WriteLine($"    part 2 : {day11P2}");
 
             Console.WriteLine("The end!");
 
