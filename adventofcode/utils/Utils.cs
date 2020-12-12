@@ -7,8 +7,8 @@ namespace adventofcode.utils
     {
         public static T[,] To2DArray<T>(List<List<T>> input)
         {
-            var rows = input.Count();
-            var columns = input.First().Count();
+            var rows = input.Count;
+            var columns = input.First().Count;
             var output = new T[rows, columns];
 
             for (var i = 0; i < input.Count; i++)
