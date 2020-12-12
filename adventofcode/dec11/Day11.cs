@@ -1,6 +1,6 @@
 ﻿using adventofcode.utils;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace adventofcode.dec11
 {
@@ -15,29 +15,17 @@ namespace adventofcode.dec11
 
         public (int, int) GetAnswers()
         {
-            var game = new Game();
+            var game = new GameOfLife();
             var board = ParseBoard();
-            return (game.GetOccupiedSeatsAfterStabilisation(board), 0);
+            return (game.GetOccupiedSeatsAfterStabilisation(board), game.GetOccupiedSeatsAfterStabilisation2(board));
         }
 
-        private Dictionary<Point, SeatStatus> ParseBoard()
+        private SeatStatus[,] ParseBoard()
         {
-            Dictionary<Point, SeatStatus> board = new Dictionary<Point, SeatStatus>();
-            var row = 0;
+            var board = _fileReader.ReadLineByLine("assets/dec11.txt")
+                .Select(line => line.Select(ParseSeat).ToList()).ToList();
 
-            foreach (var line in _fileReader.ReadLineByLine("assets/dec11.txt"))
-            {
-                for (var i = 0; i < line.Length; i++)
-                {
-                    var p = new Point {X = i, Y = row};
-                    var v = ParseSeat(line[i]);
-                    if(v != SeatStatus.Floor) board.Add(p, v);
-                }
-
-                row++;
-            }
-
-            return board;
+            return Utils.To2DArray(board);
         }
 
         private SeatStatus ParseSeat(char seat) => seat switch
