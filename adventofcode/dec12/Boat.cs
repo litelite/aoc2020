@@ -70,10 +70,10 @@ namespace adventofcode.dec12
                         wx -= amount;
                         break;
                     case Instruction.Left:
-                        (wx, wy) = Rotate(wx, wy, 0, 0, 360 - amount);
+                        (wx, wy) = Rotate(wx, wy, 360 - amount);
                         break;
                     case Instruction.Right:
-                        (wx, wy) = Rotate(wx, wy, 0, 0, amount);
+                        (wx, wy) = Rotate(wx, wy, amount);
                         break;
                     case Instruction.Forward:
                         var (vx, vy) = VectorTo(x, y, wx, wy);
@@ -90,21 +90,15 @@ namespace adventofcode.dec12
             return Math.Abs(x) + Math.Abs(y);
         }
 
-        private (int x, int y) Rotate(int x, int y, int cx, int cy, int angle)
+        private (int x, int y) Rotate(int x, int y, int angle)
         {
             var s = Math.Sin(DegToRad(angle));
             var c = Math.Cos(DegToRad(angle));
 
-            // translate point back to origin:
-            x -= cx;
-            y -= cy;
-
-            // rotate point
             var xNew = x * c - y * s;
             var yNew = x * s + y * c;
 
-            // translate point back:
-            return ((int)Math.Round(xNew + cx), (int)Math.Round(yNew + cy));
+            return ((int)Math.Round(xNew), (int)Math.Round(yNew));
         }
 
         private double DegToRad(int deg) => (Math.PI / 180) * deg;
