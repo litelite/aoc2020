@@ -37,7 +37,7 @@ namespace adventofcodeTests.dec12
 
             //Assert
             Assert.AreEqual(25, part1);
-            Assert.AreEqual(0, part2);
+            Assert.AreEqual(286, part2);
         }
     }
 }

@@ -17,9 +17,9 @@ namespace adventofcode.dec12
         public (int, int) GetAnswers()
         {
             var boat = new Boat();
-            var instructions = ParseInstructions();
+            var instructions = ParseInstructions().ToArray();
 
-            return (boat.GetDistanceFromStart(instructions), 0);
+            return (boat.GetDistanceFromStart(instructions), boat.MoveByWaypoint(instructions));
         }
 
         private IEnumerable<(Instruction, int)> ParseInstructions()
