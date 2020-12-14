@@ -2,6 +2,7 @@
 using adventofcode.dec10;
 using adventofcode.dec11;
 using adventofcode.dec12;
+using adventofcode.dec13;
 using adventofcode.dec2;
 using adventofcode.dec3;
 using adventofcode.dec4;
@@ -16,7 +17,7 @@ namespace adventofcode
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var startTime = DateTime.Now;
 
@@ -69,6 +70,11 @@ namespace adventofcode
             Console.WriteLine("Day 12");
             Console.WriteLine($"    part 1 : {day12P1}");
             Console.WriteLine($"    part 2 : {day12P2}");
+
+            var (day13P1, day13P2) = new Day13().GetAnswers();
+            Console.WriteLine("Day 13");
+            Console.WriteLine($"    part 1 : {day13P1}");
+            Console.WriteLine($"    part 2 : {day13P2}");
 
             Console.WriteLine("The end!");
 
