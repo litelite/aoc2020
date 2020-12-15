@@ -7,22 +7,27 @@ namespace adventofcode.dec15
     {
         public int FindNthSpokenNumber(IEnumerable<int> seed, int turns)
         {
-            var numbers = new List<int>(seed) {Capacity = turns};
-            turns--;
-            for(var i = numbers.Count - 1; i < turns; i++)
+            var seedArray = seed.ToArray();
+            var numbers = seedArray.Take(seedArray.Length - 1)
+                .Select((n, i) => (n, i))
+                .ToDictionary(x => x.n, x => x.i);
+            var previous = seedArray.Last();
+            
+            for (var i = numbers.Count + 1; i < turns; i++)
             {
-                var lastIndex = numbers.LastIndexOf(numbers[i], i - 1);
-                if (lastIndex == -1)
+                if (!numbers.TryGetValue(previous, out var lastIndex))
                 {
-                    numbers.Add(0);
+                    numbers[previous] = i - 1;
+                    previous = 0;
                 }
                 else
                 {
-                    numbers.Add(i - lastIndex);
+                    numbers[previous] = i - 1;
+                    previous = (i - lastIndex) - 1;
                 }
             }
 
-            return numbers.Last();
+            return previous;
         }
     }
 }

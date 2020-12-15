@@ -7,7 +7,7 @@
         {
             var seed = new[] {8, 11, 0, 19, 1, 2};
             var game = new NumberGame();
-            return (game.FindNthSpokenNumber(seed, 2020), 0);
+            return (game.FindNthSpokenNumber(seed, 2020), game.FindNthSpokenNumber(seed, 30000000));
         }
     }
 }
