@@ -44,7 +44,7 @@ namespace adventofcode.dec14
         public IEnumerable<long> GetPossibleAddresses(long baseAddress)
         {
             return _floatingBits.Aggregate(new[] { baseAddress | _forceOnMask } as IEnumerable<long>,
-                (acc, curr) => acc.SelectMany(x => new long[] 
+                (acc, curr) => acc.SelectMany(x => new[] 
                 {
                     x & ~(1L << curr), 
                     x | 1L << curr,
